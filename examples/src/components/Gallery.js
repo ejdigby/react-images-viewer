@@ -3,6 +3,12 @@ import ImgsViewer from 'react-images-viewer'
 import PropTypes from 'prop-types'
 import { css, StyleSheet } from 'aphrodite/no-important'
 
+const MyImageComponent = (props) => {
+  return (
+    <img {...props} />
+  )
+}
+
 class Gallery extends Component {
   constructor () {
     super()
@@ -97,6 +103,7 @@ class Gallery extends Component {
           spinnerColor={this.props.spinnerColor}
           spinnerSize={this.props.spinnerSize}
           theme={this.props.theme}
+          CustomMediaComponent={MyImageComponent}
         />
       </div>
     )

@@ -230,7 +230,7 @@ class ImgsViewer extends Component {
     )
   }
   renderImgs () {
-    const { currImg, imgs, onClickImg, showThumbnails } = this.props
+    const { currImg, imgs, onClickImg, showThumbnails, CustomMediaComponent } = this.props
 
     const { imgLoaded } = this.state
 
@@ -242,26 +242,43 @@ class ImgsViewer extends Component {
 
     const thumbnailsSize = showThumbnails ? this.theme.thumbnail.size : 0
     const heightOffset = `${this.theme.header.height + this.theme.footer.height + thumbnailsSize + (this.theme.container.gutter.vertical)}px`
+    
+    const componentProps = {
+      className: css(this.classes.img, imgLoaded && this.classes.imgLoaded),
+      onClick: onClickImg,
+      sizes: sizes,
+      alt: img.alt,
+      src: img.src,
+      srcSet: sourceSet,
+      style:{
+        cursor: onClickImg ? 'pointer' : 'auto',
+        maxHeight: `calc(100vh - ${heightOffset}`,
+      }
+    }
 
-    return (
-      <figure className={css(this.classes.figure)}>
-        {/* Re-implement when react warning 'unknown props'
-        https://fb.me/react-unknown-props is resolved
-        <Swipeable onSwipedLeft={this.gotonext} onSwipedRight={this.gotoPrev} /> */}
-        <img
-          className={css(this.classes.img, imgLoaded && this.classes.imgLoaded)}
-          onClick={onClickImg}
-          sizes={sizes}
-          alt={img.alt}
-          src={img.src}
-          srcSet={sourceSet}
-          style={{
-            cursor: onClickImg ? 'pointer' : 'auto',
-            maxHeight: `calc(100vh - ${heightOffset}`,
-          }}
-        />
-      </figure>
-    )
+    if (CustomMediaComponent != null) {
+      return (
+        <figure className={css(this.classes.figure)}>
+          {/* Re-implement when react warning 'unknown props'
+          https://fb.me/react-unknown-props is resolved
+          <Swipeable onSwipedLeft={this.gotonext} onSwipedRight={this.gotoPrev} /> */}
+          <CustomMediaComponent
+            {...componentProps}
+          />
+        </figure>
+      )
+    } else {
+      return (
+        <figure className={css(this.classes.figure)}>
+          {/* Re-implement when react warning 'unknown props'
+          https://fb.me/react-unknown-props is resolved
+          <Swipeable onSwipedLeft={this.gotonext} onSwipedRight={this.gotoPrev} /> */}
+          <img
+            {...componentProps}
+          />
+        </figure>
+      )
+    }
   }
   renderThumbnails (theme) {
     const { imgs, currImg, leftArrowTitle, rightArrowTitle, onClickThumbnail, showThumbnails, thumbnailOffset } = this.props
@@ -371,15 +388,15 @@ ImgsViewer.propTypes = {
   width: PropTypes.number,
 }
 ImgsViewer.defaultProps = {
-  closeBtnTitle: '关闭（空格键）',
+  closeBtnTitle: 'Close',
   currImg: 0,
   enableKeyboardInput: true,
   imgCountSeparator: ' / ',
-  leftArrowTitle: '上一张（向左键）',
+  leftArrowTitle: 'Previous',
   onClickShowNextImg: true,
   preloadNextImg: true,
   preventScroll: true,
-  rightArrowTitle: '下一张（向右键）',
+  rightArrowTitle: 'Next',
   showCloseBtn: true,
   showImgCount: true,
   spinner: DefaultSpinner,

@@ -1087,7 +1087,8 @@
             currImg = _props3.currImg,
             imgs = _props3.imgs,
             onClickImg = _props3.onClickImg,
-            showThumbnails = _props3.showThumbnails;
+            showThumbnails = _props3.showThumbnails,
+            CustomMediaComponent = _props3.CustomMediaComponent;
         var imgLoaded = this.state.imgLoaded;
 
 
@@ -1100,22 +1101,32 @@
         var thumbnailsSize = showThumbnails ? this.theme.thumbnail.size : 0;
         var heightOffset = this.theme.header.height + this.theme.footer.height + thumbnailsSize + this.theme.container.gutter.vertical + 'px';
 
-        return React__default.createElement(
-          'figure',
-          { className: aphrodite.css(this.classes.figure) },
-          React__default.createElement('img', {
-            className: aphrodite.css(this.classes.img, imgLoaded && this.classes.imgLoaded),
-            onClick: onClickImg,
-            sizes: sizes,
-            alt: img.alt,
-            src: img.src,
-            srcSet: sourceSet,
-            style: {
-              cursor: onClickImg ? 'pointer' : 'auto',
-              maxHeight: 'calc(100vh - ' + heightOffset
-            }
-          })
-        );
+        var componentProps = {
+          className: aphrodite.css(this.classes.img, imgLoaded && this.classes.imgLoaded),
+          onClick: onClickImg,
+          sizes: sizes,
+          alt: img.alt,
+          src: img.src,
+          srcSet: sourceSet,
+          style: {
+            cursor: onClickImg ? 'pointer' : 'auto',
+            maxHeight: 'calc(100vh - ' + heightOffset
+          }
+        };
+
+        if (CustomMediaComponent != null) {
+          return React__default.createElement(
+            'figure',
+            { className: aphrodite.css(this.classes.figure) },
+            React__default.createElement(CustomMediaComponent, componentProps)
+          );
+        } else {
+          return React__default.createElement(
+            'figure',
+            { className: aphrodite.css(this.classes.figure) },
+            React__default.createElement('img', componentProps)
+          );
+        }
       }
     }, {
       key: 'renderThumbnails',
@@ -1252,15 +1263,15 @@
     width: PropTypes.number
   };
   ImgsViewer.defaultProps = {
-    closeBtnTitle: '关闭（空格键）',
+    closeBtnTitle: 'Close',
     currImg: 0,
     enableKeyboardInput: true,
     imgCountSeparator: ' / ',
-    leftArrowTitle: '上一张（向左键）',
+    leftArrowTitle: 'Previous',
     onClickShowNextImg: true,
     preloadNextImg: true,
     preventScroll: true,
-    rightArrowTitle: '下一张（向右键）',
+    rightArrowTitle: 'Next',
     showCloseBtn: true,
     showImgCount: true,
     spinner: Spinner,
