@@ -249,6 +249,7 @@ class ImgsViewer extends Component {
       sizes: sizes,
       alt: img.alt,
       src: img.src,
+      img: img,
       srcSet: sourceSet,
       style:{
         cursor: onClickImg ? 'pointer' : 'auto',
@@ -281,7 +282,7 @@ class ImgsViewer extends Component {
     }
   }
   renderThumbnails (theme) {
-    const { imgs, currImg, leftArrowTitle, rightArrowTitle, onClickThumbnail, showThumbnails, thumbnailOffset } = this.props
+    const { imgs, currImg, leftArrowTitle, rightArrowTitle, onClickThumbnail, showThumbnails, thumbnailOffset, CustomMediaComponent } = this.props
 
     if (!showThumbnails) return null
 
@@ -294,6 +295,7 @@ class ImgsViewer extends Component {
         imgs={imgs}
         offset={thumbnailOffset}
         onClickThumbnail={onClickThumbnail}
+        CustomMediaComponent={CustomMediaComponent}
       />
     )
   }

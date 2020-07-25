@@ -6,21 +6,43 @@ import defaults from '../theme'
 import { deepMerge } from '../utils/util'
 
 
-function Thumbnail ({ index, src, thumbnail, active, onClick, theme }) {
+function Thumbnail ({ index, src, thumbnail, active, onClick, theme, CustomMediaComponent, img}) {
   const url = thumbnail || src
   const classes = StyleSheet.create(deepMerge(defaultStyles, theme))
 
-  return (
-    <div
-      className={css(classes.thumbnail, active && classes.thumbnail__active)}
-      onClick={(e) => {
-        e.preventDefault()
-        e.stopPropagation()
-        onClick(index)
-      }}
-      style={{ backgroundImage: `url("${url}")` }}
-    />
-  )
+  console.log("Thumbnail")
+  console.log(thumbnail)
+  const props = {
+
+  }
+  if (CustomMediaComponent != null) {
+    return (
+      <CustomMediaComponent
+        className={css(classes.thumbnail, active && classes.thumbnail__active)}
+        onClick={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          onClick(index)
+        }}
+        img={img}
+        src={url}
+      />
+    )
+
+  } else {
+    return (
+      <div
+        className={css(classes.thumbnail, active && classes.thumbnail__active)}
+        onClick={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          onClick(index)
+        }}
+        style={{ backgroundImage: `url("${url}")` }}
+      />
+    )
+  }
+  
 }
 
 Thumbnail.propTypes = {

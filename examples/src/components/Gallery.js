@@ -98,7 +98,7 @@ class Gallery extends Component {
           onClickThumbnail={this.gotoImg}
           onClose={this.closeImgsViewer}
           preventScroll={this.props.preventScroll}
-          showThumbnails={this.props.showThumbnails}
+          showThumbnails={true}
           spinner={this.props.spinner}
           spinnerColor={this.props.spinnerColor}
           spinnerSize={this.props.spinnerSize}

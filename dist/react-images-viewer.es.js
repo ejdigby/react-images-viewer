@@ -447,20 +447,37 @@ function Thumbnail(_ref) {
       thumbnail = _ref.thumbnail,
       active = _ref.active,
       _onClick = _ref.onClick,
-      theme$$1 = _ref.theme;
+      theme$$1 = _ref.theme,
+      CustomMediaComponent = _ref.CustomMediaComponent,
+      img = _ref.img;
 
   var url = thumbnail || src;
   var classes = StyleSheet.create(deepMerge(defaultStyles$4, theme$$1));
 
-  return React.createElement('div', {
-    className: css(classes.thumbnail, active && classes.thumbnail__active),
-    onClick: function onClick(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      _onClick(index);
-    },
-    style: { backgroundImage: 'url("' + url + '")' }
-  });
+  console.log("Thumbnail");
+  console.log(thumbnail);
+  if (CustomMediaComponent != null) {
+    return React.createElement(CustomMediaComponent, {
+      className: css(classes.thumbnail, active && classes.thumbnail__active),
+      onClick: function onClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        _onClick(index);
+      },
+      img: img,
+      src: url
+    });
+  } else {
+    return React.createElement('div', {
+      className: css(classes.thumbnail, active && classes.thumbnail__active),
+      onClick: function onClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        _onClick(index);
+      },
+      style: { backgroundImage: 'url("' + url + '")' }
+    });
+  }
 }
 
 Thumbnail.propTypes = {
@@ -651,7 +668,8 @@ var PaginatedThumbnails = function (_Component) {
           currImg = _props4.currImg,
           onClickThumbnail = _props4.onClickThumbnail,
           offset = _props4.offset,
-          theme$$1 = _props4.theme;
+          theme$$1 = _props4.theme,
+          CustomMediaComponent = _props4.CustomMediaComponent;
 
 
       var totalCount = 2 * offset + 1; // show $offset extra thumbnails on each side
@@ -665,6 +683,9 @@ var PaginatedThumbnails = function (_Component) {
         thumbnails = imgs.slice(baseOffset, baseOffset + totalCount);
       }
 
+      console.log("Render Paginated thumbnails");
+      console.log(thumbnails);
+
       return React.createElement(
         'div',
         { className: css(classes.paginatedThumbnails) },
@@ -676,7 +697,9 @@ var PaginatedThumbnails = function (_Component) {
           }, img, {
             index: baseOffset + idx,
             onClick: onClickThumbnail,
-            active: baseOffset + idx === currImg
+            active: baseOffset + idx === currImg,
+            CustomMediaComponent: CustomMediaComponent,
+            img: img
           }));
         }),
         this.renderArrowNext(theme$$1)
@@ -1105,6 +1128,7 @@ var ImgsViewer = function (_Component) {
         sizes: sizes,
         alt: img.alt,
         src: img.src,
+        img: img,
         srcSet: sourceSet,
         style: {
           cursor: onClickImg ? 'pointer' : 'auto',
@@ -1136,7 +1160,8 @@ var ImgsViewer = function (_Component) {
           rightArrowTitle = _props4.rightArrowTitle,
           onClickThumbnail = _props4.onClickThumbnail,
           showThumbnails = _props4.showThumbnails,
-          thumbnailOffset = _props4.thumbnailOffset;
+          thumbnailOffset = _props4.thumbnailOffset,
+          CustomMediaComponent = _props4.CustomMediaComponent;
 
 
       if (!showThumbnails) return null;
@@ -1148,7 +1173,8 @@ var ImgsViewer = function (_Component) {
         currImg: currImg,
         imgs: imgs,
         offset: thumbnailOffset,
-        onClickThumbnail: onClickThumbnail
+        onClickThumbnail: onClickThumbnail,
+        CustomMediaComponent: CustomMediaComponent
       });
     }
   }, {
