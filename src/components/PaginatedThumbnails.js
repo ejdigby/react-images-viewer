@@ -140,9 +140,6 @@ export default class PaginatedThumbnails extends Component {
       baseOffset = this.getFirst()
       thumbnails = imgs.slice(baseOffset, baseOffset + totalCount)
     }
-
-    console.log("Render Paginated thumbnails")
-    console.log(thumbnails)
   
     return (
       <div className={css(classes.paginatedThumbnails)}>

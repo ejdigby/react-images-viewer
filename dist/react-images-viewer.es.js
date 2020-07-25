@@ -454,8 +454,6 @@ function Thumbnail(_ref) {
   var url = thumbnail || src;
   var classes = StyleSheet.create(deepMerge(defaultStyles$4, theme$$1));
 
-  console.log("Thumbnail");
-  console.log(thumbnail);
   if (CustomMediaComponent != null) {
     return React.createElement(CustomMediaComponent, {
       className: css(classes.thumbnail, active && classes.thumbnail__active),
@@ -682,9 +680,6 @@ var PaginatedThumbnails = function (_Component) {
         baseOffset = this.getFirst();
         thumbnails = imgs.slice(baseOffset, baseOffset + totalCount);
       }
-
-      console.log("Render Paginated thumbnails");
-      console.log(thumbnails);
 
       return React.createElement(
         'div',

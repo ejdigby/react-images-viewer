@@ -10,11 +10,6 @@ function Thumbnail ({ index, src, thumbnail, active, onClick, theme, CustomMedia
   const url = thumbnail || src
   const classes = StyleSheet.create(deepMerge(defaultStyles, theme))
 
-  console.log("Thumbnail")
-  console.log(thumbnail)
-  const props = {
-
-  }
   if (CustomMediaComponent != null) {
     return (
       <CustomMediaComponent

@@ -456,8 +456,6 @@
     var url = thumbnail || src;
     var classes = noImportant.StyleSheet.create(deepMerge(defaultStyles$4, theme$$1));
 
-    console.log("Thumbnail");
-    console.log(thumbnail);
     if (CustomMediaComponent != null) {
       return React__default.createElement(CustomMediaComponent, {
         className: noImportant.css(classes.thumbnail, active && classes.thumbnail__active),
@@ -684,9 +682,6 @@
           baseOffset = this.getFirst();
           thumbnails = imgs.slice(baseOffset, baseOffset + totalCount);
         }
-
-        console.log("Render Paginated thumbnails");
-        console.log(thumbnails);
 
         return React__default.createElement(
           'div',
