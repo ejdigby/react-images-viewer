@@ -4,7 +4,7 @@ import { css, StyleSheet } from 'aphrodite/no-important'
 import Thumbnail from './Thumbnail'
 import defaults from '../theme'
 
-function Thumbnails ({ currImg, imgs, onClickThumbnail }) {
+function Thumbnails ({ currImg, imgs, onClickThumbnail, CustomThumbComponent }) {
   return (
     <div className={css(classes.thumbnail)}>
       {imgs.map((img, idx) => {
@@ -14,6 +14,7 @@ function Thumbnails ({ currImg, imgs, onClickThumbnail }) {
           index={idx}
           key={idx}
           onClick={onClickThumbnail}
+          CustomThumbComponent={CustomThumbComponent}
         />
       })}
     </div>

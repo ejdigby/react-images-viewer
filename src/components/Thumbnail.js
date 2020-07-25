@@ -6,13 +6,13 @@ import defaults from '../theme'
 import { deepMerge } from '../utils/util'
 
 
-function Thumbnail ({ index, src, thumbnail, active, onClick, theme, CustomMediaComponent, img}) {
+function Thumbnail ({ index, src, thumbnail, active, onClick, theme, CustomThumbComponent, img}) {
   const url = thumbnail || src
   const classes = StyleSheet.create(deepMerge(defaultStyles, theme))
 
-  if (CustomMediaComponent != null) {
+  if (CustomThumbComponent != null) {
     return (
-      <CustomMediaComponent
+      <CustomThumbComponent
         className={css(classes.thumbnail, active && classes.thumbnail__active)}
         onClick={(e) => {
           e.preventDefault()

@@ -4,8 +4,11 @@ import PropTypes from 'prop-types'
 import { css, StyleSheet } from 'aphrodite/no-important'
 
 const MyImageComponent = (props) => {
+
+  console.log(props)
+
   return (
-    <img {...props} />
+    <img {...props}/>
   )
 }
 
@@ -104,6 +107,7 @@ class Gallery extends Component {
           spinnerSize={this.props.spinnerSize}
           theme={this.props.theme}
           CustomMediaComponent={MyImageComponent}
+          CustomThumbComponent={MyImageComponent}
         />
       </div>
     )

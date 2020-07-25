@@ -129,7 +129,7 @@ export default class PaginatedThumbnails extends Component {
     )
   }
   render () {
-    const { imgs, currImg, onClickThumbnail, offset, theme, CustomMediaComponent   } = this.props
+    const { imgs, currImg, onClickThumbnail, offset, theme, CustomThumbComponent   } = this.props
 
     const totalCount = 2 * offset + 1 // show $offset extra thumbnails on each side
     let thumbnails = []
@@ -152,7 +152,7 @@ export default class PaginatedThumbnails extends Component {
             index={baseOffset + idx}
             onClick={onClickThumbnail}
             active={baseOffset + idx === currImg}
-            CustomMediaComponent={CustomMediaComponent}
+            CustomThumbComponent={CustomThumbComponent}
             img={img}
           />
         ))}

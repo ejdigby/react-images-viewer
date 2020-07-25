@@ -450,14 +450,14 @@
         active = _ref.active,
         _onClick = _ref.onClick,
         theme$$1 = _ref.theme,
-        CustomMediaComponent = _ref.CustomMediaComponent,
+        CustomThumbComponent = _ref.CustomThumbComponent,
         img = _ref.img;
 
     var url = thumbnail || src;
     var classes = noImportant.StyleSheet.create(deepMerge(defaultStyles$4, theme$$1));
 
-    if (CustomMediaComponent != null) {
-      return React__default.createElement(CustomMediaComponent, {
+    if (CustomThumbComponent != null) {
+      return React__default.createElement(CustomThumbComponent, {
         className: noImportant.css(classes.thumbnail, active && classes.thumbnail__active),
         onClick: function onClick(e) {
           e.preventDefault();
@@ -669,7 +669,7 @@
             onClickThumbnail = _props4.onClickThumbnail,
             offset = _props4.offset,
             theme$$1 = _props4.theme,
-            CustomMediaComponent = _props4.CustomMediaComponent;
+            CustomThumbComponent = _props4.CustomThumbComponent;
 
 
         var totalCount = 2 * offset + 1; // show $offset extra thumbnails on each side
@@ -695,7 +695,7 @@
               index: baseOffset + idx,
               onClick: onClickThumbnail,
               active: baseOffset + idx === currImg,
-              CustomMediaComponent: CustomMediaComponent,
+              CustomThumbComponent: CustomThumbComponent,
               img: img
             }));
           }),
@@ -1158,7 +1158,7 @@
             onClickThumbnail = _props4.onClickThumbnail,
             showThumbnails = _props4.showThumbnails,
             thumbnailOffset = _props4.thumbnailOffset,
-            CustomMediaComponent = _props4.CustomMediaComponent;
+            CustomThumbComponent = _props4.CustomThumbComponent;
 
 
         if (!showThumbnails) return null;
@@ -1171,7 +1171,7 @@
           imgs: imgs,
           offset: thumbnailOffset,
           onClickThumbnail: onClickThumbnail,
-          CustomMediaComponent: CustomMediaComponent
+          CustomThumbComponent: CustomThumbComponent
         });
       }
     }, {

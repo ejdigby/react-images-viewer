@@ -282,7 +282,7 @@ class ImgsViewer extends Component {
     }
   }
   renderThumbnails (theme) {
-    const { imgs, currImg, leftArrowTitle, rightArrowTitle, onClickThumbnail, showThumbnails, thumbnailOffset, CustomMediaComponent } = this.props
+    const { imgs, currImg, leftArrowTitle, rightArrowTitle, onClickThumbnail, showThumbnails, thumbnailOffset, CustomThumbComponent } = this.props
 
     if (!showThumbnails) return null
 
@@ -295,7 +295,7 @@ class ImgsViewer extends Component {
         imgs={imgs}
         offset={thumbnailOffset}
         onClickThumbnail={onClickThumbnail}
-        CustomMediaComponent={CustomMediaComponent}
+        CustomThumbComponent={CustomThumbComponent}
       />
     )
   }
